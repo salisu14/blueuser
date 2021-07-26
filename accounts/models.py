@@ -8,14 +8,14 @@ from django.db import models
 
 class User(AbstractUser):
     class Types(models.TextChoices):
-        ACCOUNTANT = "Accountant",
-	SALESPERSON = "Salesperson",
-	STOREKEEPER = "Storekeeper"
+	    ACCOUNTANT = "ACCOUNTANT", "Accountant"
+	    SALESPERSON = "SALESPERSON", "Salesperson"
+	    STOREKEEPER = "STOREKEEPER", "Storekeeper"
 
  
-     # Identify the type of user
+    # Identify the type of user
     type = models.CharField(
-	    _("Types"), 
+	    "Types", 
 	    max_length=50, 
 	    choices=Types.choices,
 	    default=Types.SALESPERSON
@@ -26,10 +26,10 @@ class User(AbstractUser):
     base_type = Types.SALESPERSON
 
     def save(self, *args, **kwargs):
-	'''Add a default base_type when adding a new user '''
+        '''Add a default base_type when adding a new user '''
         if not self.pk:
             self.type = self.base_type
-	return super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 class AccountantManager(BaseUserManager):
