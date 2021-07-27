@@ -19,7 +19,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Department
-		fields = ('id','name', 'branch', 'creator','created',)
+		fields = ('id','name', 'branch', 'creator',)
    
 
 class ProductSerializer(serializers.ModelSerializer):
